@@ -51,7 +51,7 @@ return (
               path="/"
               element={
                 <Textform
-                  heading="Enter the Text Below"
+                  heading="Try Textutils - Word Counter,Character Counter,Remove extra spaces"
                   Mode={Mode}
                   showAlert={showAlert}
                 />

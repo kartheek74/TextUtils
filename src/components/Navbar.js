@@ -1,49 +1,70 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <div>
-        <nav className={`navbar navbar-expand-lg navbar-${props.Mode} bg-${props.Mode} px-4`}>
+    <nav className={`navbar navbar-expand-lg navbar-${props.Mode} bg-${props.Mode}`}>
+      <div className="container-fluid">
 
         {/* Logo */}
-        <Link className="navbar-brand mx-2 " href="/">
+        <Link className="navbar-brand fw-bold" to="/">
           TextUtils
         </Link>
 
-        {/* Search Bar */}
-        {/*<form className="d-flex mx-auto" role="search">
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button
-            className={`btn btn-outline-${props.Mode === 'light' ? 'dark' : 'light'}`}
-            type="submit"
+        {/* Mobile Toggle */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Navbar Content */}
+        <div className={`collapse navbar-collapse ${menuOpen ? "show" : ""}`}>
+
+          {/* Home & About */}
+          <ul className="navbar-nav ms-3">
+            <li className="nav-item">
+              <Link className="nav-link" to="/" onClick={closeMenu}>
+                Home
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/about" onClick={closeMenu}>
+                About
+              </Link>
+            </li>
+          </ul>
+
+          {/* Dark Mode */}
+          <div
+            className={`form-check form-switch ms-lg-auto mt-3 mt-lg-0 text-${
+              props.Mode === "light" ? "dark" : "light"
+            }`}
           >
-            Search
-          </button>
-        </form>*/}
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="switchCheckDefault"
+              checked={props.Mode === "dark"}
+              onChange={props.toggleMode}
+            />
+            <label
+              className="form-check-label"
+              htmlFor="switchCheckDefault"
+            >
+              Dark Mode
+            </label>
+          </div>
 
-        {/* Navigation Links */}
-        <div className="navbar-nav flex-row ms-4">
-          <Link className="nav-link active mx-2" to="/">
-            <strong>Home</strong>
-          </Link>
-
-          <Link className="nav-link active mx-2" to="/about">
-            <strong>About</strong>
-          </Link>
         </div>
-        <div className ="ms-auto">
-          <div className={`form-check form-switch text-${props.Mode === 'light' ? 'dark' : 'light'}`}>
-            <input className="form-check-input" type="checkbox" role="switch" id="switchCheckDefault"  onClick={props.toggleMode} />
-            <label className={`form-check-label text-${props.Mode === 'light' ? 'dark' : 'light'}`} htmlFor="switchCheckDefault">Dark Mode</label>
-          </div>
-          </div>
-        </nav>
-    </div>
-  )
+      </div>
+    </nav>
+  );
 }

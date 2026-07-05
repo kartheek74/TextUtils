@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 
 export default function Textform(props) {
 
+
   const handleUpClick = ()=>{
     //console.log("Uppercase was clicked"+ text);
     let newText = text.toUpperCase();
@@ -50,16 +51,16 @@ export default function Textform(props) {
   return (
     <>
     <div className="container py-4" >
-      <h1 style ={{ color: props.Mode === 'dark' ? 'white' : 'black' }}>{props.heading}</h1>
+      <h1 className= " main-heading " style ={{ color: props.Mode === 'dark' ? 'white' : 'black' }}>{props.heading}</h1>
       <div className="mb-3">
       <textarea className="form-control" value={text} onChange={handleOnChange} style ={{ backgroundColor: props.Mode === 'dark' ? '#444b4c' : '#e9cee7', color: props.Mode === 'dark' ? 'white' : 'black' }} id="myBox" rows="8"></textarea>
       </div>
-      <button className="btn btn-custom my-1 mx-1" onClick={handleUpClick}>Convert to Uppercase</button>  
-      <button className="btn btn-custom my-1 mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
-      <button className="btn btn-custom my-1 mx-1" onClick={handleClearClick}>Clear Text</button>
-      <button className="btn btn-custom my-1 mx-1" onClick={handleCopy}>Copy Text</button>
-      <button className="btn btn-custom my-1 mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
-      <button className="btn btn-custom my-1 mx-1" onClick={() => setText(capitalizeFirstLetter(text))}>Capitalize First Letter</button>
+      <button disabled ={text.length===0} className="btn btn-custom my-1 mx-1" onClick={handleUpClick}>Convert to Uppercase</button>  
+      <button disabled ={text.length===0} className="btn btn-custom my-1 mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
+      <button disabled ={text.length===0} className="btn btn-custom my-1 mx-1" onClick={handleClearClick}>Clear Text</button>
+      <button disabled ={text.length===0} className="btn btn-custom my-1 mx-1" onClick={handleCopy}>Copy Text</button>
+      <button disabled ={text.length===0} className="btn btn-custom my-1 mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+      <button disabled ={text.length===0} className="btn btn-custom my-1 mx-1" onClick={() => setText(capitalizeFirstLetter(text))}>Capitalize First Letter</button>
     </div>
 
         <div className="container" style = {{marginTop: '5px'}}>

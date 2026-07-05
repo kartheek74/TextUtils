@@ -9,7 +9,7 @@ export default function Alert(props) {
   };
 
   return (
-    <div>
+    <div style ={{height: '35px'}}>
       {props.alert && (
         <div
           className={`alert alert-${props.alert.type}`}
@@ -18,7 +18,7 @@ export default function Alert(props) {
             color: '#fff',
             backgroundColor:
               props.alert.type === 'success'
-                ? '#5d7c6e'
+                ? '#83aad9'
                 : props.alert.type === 'danger'
                 ? '#dc3545'
                 : '#5e9882',
